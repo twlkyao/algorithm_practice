@@ -2,47 +2,27 @@
 
 void merge(int numbers[], int temp[], int left, int mid, int right)
 {
-    int i, left_end, num_elements, tmp_pos;
+    int i, left_end, tmp_pos, n_length;
 
     left_end = mid - 1;
     tmp_pos = left;
-    num_elements = right - left + 1;
+    n_length = right - left + 1;
 
-    while ((left <= left_end) && (mid <= right))
-    {
+    while ((left <= left_end) && (mid <= right)) {
         if (numbers[left] <= numbers[mid])
-        {
-            temp[tmp_pos] = numbers[left];
-            tmp_pos = tmp_pos + 1;
-            left = left +1;
-        }
+            temp[tmp_pos++] = numbers[left++];
         else
-        {
-            temp[tmp_pos] = numbers[mid];
-            tmp_pos = tmp_pos + 1;
-            mid = mid + 1;
-        }
+            temp[tmp_pos++] = numbers[mid++];
     }
 
     while (left <= left_end)
-    {
-        temp[tmp_pos] = numbers[left];
-        left = left + 1;
-        tmp_pos = tmp_pos + 1;
-    }
+        temp[tmp_pos++] = numbers[left++];
 
     while (mid <= right)
-    {
-        temp[tmp_pos] = numbers[mid];
-        mid = mid + 1;
-        tmp_pos = tmp_pos + 1;
-    }
+        temp[tmp_pos++] = numbers[mid++];
 
-    for (i = 0; i <= num_elements; i++)
-    {
+    for (i = 0; i <= n_length; i++, right--)
         numbers[right] = temp[right];
-        right = right - 1;
-    }
 }
 
 void m_sort(int numbers[], int temp[], int left, int right)
@@ -64,23 +44,25 @@ void mergeSort(int numbers[], int temp[], int array_size)
     m_sort(numbers, temp, 0, array_size - 1);
 }
 
-int main() 
+void m_print(int m_arr[], int length) {
+    for (int i = 0; i <= length - 1; ++i) {
+        printf("%5d", m_arr[i]);
+    }
+    printf("\n");
+}
+
+#define ARR_SIZE 7
+
+int main()
 {
-    int array_size = 5;
-    int a[5] = {1, 6, 5, 9, 2};
-    int tmp[6] = {};
+    int a[ARR_SIZE] = {1, -9, 6, 5, 102, 9, 2};
+    int tmp[ARR_SIZE] = {};
 
-    for (int i = 0; i <= 4; ++i) {
-        printf("%d", a[i]);
-    }
-    printf("\n");
+    m_print(a, sizeof(a) / sizeof(a[0]));
 
-    mergeSort(a, tmp, array_size);
+    mergeSort(a, tmp, ARR_SIZE);
 
-    for (int i = 0; i <= 4; ++i) {
-        printf("%d", a[i]);
-    }
-    printf("\n");
+    m_print(a, sizeof(a) / sizeof(a[0]));
 
-    return 1;
+    return 0;
 }
