@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define ACCURACY 0.001
+#define ACCURACY 0.0001
 
 // Log base 2 approximation and Newton's Method
 float sqrt1(const float x)
@@ -62,7 +62,7 @@ double sqrt3( unsigned long N )
      return( N == p ? n : low );
  }
 
-// http://blog.csdn.net/wzy_1988/article/details/11758049
+// Binary Method http://blog.csdn.net/wzy_1988/article/details/11758049
 double sqrt4(double n)  
 {  
     double low, high, mid, tmp;  
@@ -82,7 +82,7 @@ double sqrt4(double n)
   
         tmp = mid * mid;  
   
-        if (abs(tmp - n) <= ACCURACY) {  
+if (tmp - n <= ACCURACY && tmp - n >= ACCURACY * -1) {  
             return mid;  
         } else if (tmp > n) {  
             high = mid;  
@@ -90,7 +90,7 @@ double sqrt4(double n)
             low = mid;  
         }  
     }  
-  
+
     return -1.000;  
 }
 
