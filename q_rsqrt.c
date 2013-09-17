@@ -42,29 +42,29 @@ float sqrt2(const float x)
 
 // Newton's Approximation Method
 double sqrt3( unsigned long N )
- {
-     double n, p, low, high;
-     if( 2 > N )
-         return( N );
-     low  = 0;
-     high = N;
-     while( high > low + 1 )
-     {
-         n = (high + low) / 2;
-         p = n * n;
-         if( N < p )
-             high = n;
-         else if( N > p )
-             low = n;
-         else
-             break;
-     }
-     return( N == p ? n : low );
- }
+{
+    double n, p, low, high;
+    if( 2 > N )
+        return( N );
+    low  = 0;
+    high = N;
+    while( high > low + 1 )
+    {
+        n = (high + low) / 2;
+        p = n * n;
+        if( N < p )
+            high = n;
+        else if( N > p )
+            low = n;
+        else
+            break;
+    }
+    return( N == p ? n : low );
+}
 
 // Binary Method http://blog.csdn.net/wzy_1988/article/details/11758049
-double sqrt4(double n)  
-{  
+double sqrt4(double n)
+{
     double low, high, mid, tmp;  
   
     // 获取上下界  
@@ -82,7 +82,7 @@ double sqrt4(double n)
   
         tmp = mid * mid;  
   
-if (tmp - n <= ACCURACY && tmp - n >= ACCURACY * -1) {  
+        if (tmp - n <= ACCURACY && tmp - n >= ACCURACY * -1) {  
             return mid;  
         } else if (tmp > n) {  
             high = mid;  
@@ -91,7 +91,7 @@ if (tmp - n <= ACCURACY && tmp - n >= ACCURACY * -1) {
         }  
     }  
 
-    return -1.000;  
+    return -1.000;
 }
 
 void main() {
