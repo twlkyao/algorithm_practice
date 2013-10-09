@@ -57,6 +57,15 @@ int EmptyQueue(LinkQueue *Q) {
         return 0;
 }
 
+int DestroyQueue(LinkQueue *Q) {
+    while (Q->front) {
+        Q->rear = Q->front->next;
+        free(Q->front);
+        Q->front = Q->rear;
+    }
+    return true;
+}
+
 int main() {
     LinkQueue Q;
     int i, Result;
@@ -64,15 +73,20 @@ int main() {
 
     initQueue(&Q);
 
-    while((in = getchar()) != EOF) {
-            i = atoi(&in);
-            EnQueue(&Q, i);
+    // while((in = getchar()) != EOF) {
+    //     i = atoi(&in);
+    while (scanf("%d", &i) != EOF) {
+        EnQueue(&Q, i);
     }
+
+    // DestroyQueue(&Q);
 
     cout << "\n";
     while(!EmptyQueue(&Q)) {
         DeQueue(&Q, &Result);
         cout << Result << "\n";
     }
+
+    DestroyQueue(&Q);
 
 }
